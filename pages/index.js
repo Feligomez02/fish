@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-const REDIRECT_URL = 'https://www.facebook.com'; // Cambia aquí
+const REDIRECT_URL = 'https://tp-sds-2a88.vercel.app/success'; // Cambia aquí
 
 export default function Home() {
   const [email, setEmail] = useState('');
