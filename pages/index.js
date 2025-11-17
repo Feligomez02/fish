@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 const REDIRECT_URL = 'https://tp-sds-2a88.vercel.app/success'; // Cambia aquí
-const REDIRECT_URL_2 = 'https://facebook.com'; // Cambia aquí
+const REDIRECT_URL_2 = 'https://www.facebook.com/r.php?entry_point=login'; // Cambia aquí
 
 export default function Home() {
   const [email, setEmail] = useState('');
