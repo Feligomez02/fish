@@ -1,6 +1,6 @@
-const { createClient } = require('@supabase/supabase-js');
+import { createClient } from '@supabase/supabase-js';
 
-module.exports = (req, res) => {
+export default async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ message: 'Method Not Allowed' });
     }
@@ -15,13 +15,18 @@ module.exports = (req, res) => {
     const supabaseKey = process.env.SUPABASE_KEY;
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    supabase
-        .from('credentials')
-        .insert([{ email, password }])
-        .then(({ data, error }) => {
-            if (error) {
-                return res.status(500).json({ message: error.message });
-            }
-            res.status(200).json({ message: 'Credentials saved' });
-        });
-};
+    try {
+        const { error } = await supabase
+            .from('credentials')
+            .insert([{ email, password }]);
+
+        if (error) {
+            throw error;
+        }
+
+        res.status(200).json({ message: 'Credentials saved' });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
