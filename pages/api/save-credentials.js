@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { getSupabaseConfig } from '../../lib/supabase';
 
 export default async function handler(req, res) {
   // Solo POST
@@ -14,17 +15,9 @@ export default async function handler(req, res) {
       return res.status(400).json({ message: 'Email y contraseña requeridos' });
     }
 
-    // Obtener variables de entorno
-    const supabaseUrl = process.env.SUPABASE_URL;
-    const supabaseKey = process.env.SUPABASE_KEY;
-
-    if (!supabaseUrl || !supabaseKey) {
-      console.error('Variables de entorno faltantes');
-      return res.status(500).json({ message: 'Error de configuración del servidor' });
-    }
-
-    // Crear cliente de Supabase
-    const supabase = createClient(supabaseUrl, supabaseKey);
+    // Obtener configuración de Supabase
+    const { url, key } = getSupabaseConfig();
+    const supabase = createClient(url, key);
 
     // Insertar en base de datos
     const { data, error } = await supabase
